@@ -3,6 +3,15 @@ package matriz;
 /**
  *
  * @author Felipe Rodrigues Gil - 248543
+ * @version 2.0 28.08.15
+ * Esta classe é a responsável por verificar quantos movimentos a dama realizou
+ * a lógica partiu do ponto onde a dama apenas necessita de 2 movimentos para 
+ * chegar em qualquer ponto do tabuleiro, logo a solução foi inserir verificações
+ * onde se esgotaram as possibilidades de a dama realizar 0 e 1 movimento restando
+ * apenas a opção de ela ter realizado 2 movimentos, abaixo os metodos estão 
+ * explicados para faciliar o entendimento da lógica utilizada, o Jframe criado 
+ * descartou a necessidade de colocar verificações de valores incorretos utilizados
+ * pelo usuário final.
  */
 public class Tabuleiro {
 
@@ -19,56 +28,23 @@ public class Tabuleiro {
     }
 
     public int verificacao() {
-        int retorno = -1;
-        if (a.getX() > -1 && a.getY() > -1
-                && a.getX() < 9 && a.getY() < 9
-                && b.getX() > -1 && b.getY() > -1
-                && b.getX() < 9 && b.getY() < 9) {         
-                //finaliza a aplicação pois não foi inserido um número de 1 a 8
-            if ((a.getX() + a.getY() + b.getX() + b.getY()) == 0) {
-                retorno = -2;
-
-                //retorna 0, significa que a dama está posicionada no mesmo lugar.
-            } else if (a.getX() == b.getX() && a.getY() == b.getY()) {
-                retorno = 0;
-                //retorna 1, pois foi necessário apenas 1 movimento para chegar ao destino.
-            } else if (a.getX() == b.getX() && a.getY() != b.getY()
-                    && a.getX() != b.getX() && a.getY() == b.getY()) {
-                retorno = 1;
-                //calculo responsável para verificar movimento vertical.
-            } else if(Math.abs(a.getX() - b.getX()) == Math.abs(a.getY() - b.getY())) {
-                retorno = 1;
-                //restou apenas retornar 2, ou seja, foi necessário 2 movimentos.
-            } else {
-                retorno = 2;
-            }
-
+        int retorno;
+        //se todas as coordenadas forem iguais a dama não realiza movimento
+        if (a.getX() == b.getX() && a.getY() == b.getY()) {
+            retorno = 0;
+            /*se  as coordenadas X forem diferentes, e as coordenadas Y forem iguais
+             ou as coordenadas X forem iguais e as coordenadas Y forem diferentes ou
+             a subtração das coordenadas tiverem o mesmo resultado ignorando o sinal
+             a dama realizou apenas 1 movimento.*/
+        } else if (a.getX() != b.getX() && a.getY() == b.getY()
+                || (a.getX() == b.getX() && a.getY() != b.getY()
+                || (Math.abs(a.getX() - b.getX()) == Math.abs(a.getY() - b.getY())))) {
+            retorno = 1;
+            /*como todas as verificações de 0 ou 1 movimento foram realizadas logo apenas
+             resta a possibilidade da dama realizar 2 movimentos*/
+        } else {
+            retorno = 2;
         }
         return retorno;
     }
-
-    public static void main(String[] args) {
-
-        Tabuleiro t = new Tabuleiro(3, 5, 3, 5);
-            //switch case para deixar o código mais apresentavel.
-        switch (t.verificacao()) {
-            case -2:
-                System.out.println("[ERRO] Insira algum valor");
-                break;
-            case -1:
-                System.out.println("[ERRO] Insira quatro valor entre 1 a 8");
-                break;
-            case 0:
-                System.out.println("Movimentos: 0");
-                break;
-            case 1:
-                System.out.println("Movimentos: 1");
-                break;
-            default:
-                System.out.println("Movimentos: 2");
-
-        }
-
-    }
-
 }

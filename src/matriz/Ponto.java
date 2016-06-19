@@ -3,9 +3,10 @@ package matriz;
 /**
  *
  * @author Felipe Rodrigues Gil - 248543
+ * @version 2.0 28.08.15
  */
 public class Ponto {
-
+    //Classe responsável para atribruir os pontos x e y.
     private int x;
     private int y;
 
