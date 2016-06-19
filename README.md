@@ -10,10 +10,12 @@ tabuleiro?
 
 Kary achou a solução para alguns desses problemas, mas teve dificuldade com outros, e por isso pediu que você escrevesse um programa que resolve esse tipo de problema.
 
-Entrada
+  Entrada
+  
 A entrada contém vários casos de teste. A primeira e única linha de cada caso de teste contém quatro inteiros X1, Y1, X2 e Y2 (1 · X1, Y1,X2, Y2 · 8). A dama começa na casa de coordenadas (X1, Y1), e a casa de destino é a casa de coordenadas (X2, Y2). No tabuleiro, as colunas são numeradas da esquerda para a direita de 1 a 8 e as linhas de cima para baixo também de 1 a 8. As coordenadas de uma casa na linha X e coluna Y são (X, Y ). O final da entrada é indicado por uma linha contendo quatro zeros. Os dados devem ser lidos da entrada padrão.
 
-Saída
+  Saída
+  
 Para cada caso de teste da entrada seu programa deve imprimir uma única linha na saída, contendo um número inteiro, indicando o menor número de movimentos necessários para a dama chegar em sua casa de destino.
 
 # Exercício:
